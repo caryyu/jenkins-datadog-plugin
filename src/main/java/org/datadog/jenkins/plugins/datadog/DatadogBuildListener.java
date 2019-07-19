@@ -481,6 +481,7 @@ public class DatadogBuildListener extends RunListener<Run>
     private String blacklist = null;
     private String whitelist = null;
     private String globalJobTags = null;
+    private String workspaceTagFile = "JenkinsDataDogTags";
     private Boolean tagNode = false;
     private String daemonHost = "localhost:8125";
     private String targetMetricURL = "https://api.datadoghq.com/api/";
@@ -664,6 +665,9 @@ public class DatadogBuildListener extends RunListener<Run>
       // Grab the Global Job Tags
       this.setGlobalJobTags(formData.getString("globalJobTags"));
 
+      // Grab the Workspace Tag File Name
+      this.setWorkspaceTagFile(formData.getString("workspaceTagFile"));
+
       // Grab tagNode and coerse to a boolean
       if ( formData.getString("tagNode").equals("true") ) {
         this.setTagNode(true);
@@ -790,6 +794,14 @@ public class DatadogBuildListener extends RunListener<Run>
      */
     public void setGlobalJobTags(String globalJobTags) {
       this.globalJobTags = globalJobTags;
+    }
+
+    public String getWorkspaceTagFile() {
+      return workspaceTagFile;
+    }
+
+    public void setWorkspaceTagFile(String workspaceTagFile) {
+      this.workspaceTagFile = workspaceTagFile;
     }
 
     /**
